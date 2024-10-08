@@ -6,13 +6,13 @@ public class Transactions {
 
 
     public class Transaction {
-        private String transactionId;
+        private int transactionId;
         private String bookISBN;
-        private String memberId;
+        private int memberId;
         private String  issueDate;
         private  String  returnDate;
 
-        public Transaction(String transactionId, String bookISBN, String memberId, String issueDate) {
+        public Transaction(int transactionId, String bookISBN, int memberId, String issueDate) {
             this.transactionId = transactionId;
             this.bookISBN = bookISBN;
             this.memberId = memberId;
@@ -24,9 +24,9 @@ public class Transactions {
         }
 
         // Getters and Setters
-        public String getTransactionId() { return transactionId; }
+        public int getTransactionId() { return transactionId; }
         public String getBookISBN() { return bookISBN; }
-        public String getMemberId() { return memberId; }
+        public int getMemberId() { return memberId; }
         public String getIssueDate() { return issueDate; }
         public String getReturnDate() { return returnDate; }
 
