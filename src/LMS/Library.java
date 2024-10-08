@@ -1,7 +1,5 @@
-package LMS.Library;
+package LMS;
 
-import LMS.Book_Management.Book;
-import LMS.Member_Management.Member;
 import java.io.BufferedWriter;
 
 
@@ -23,7 +21,7 @@ public class Library{
     public Library() throws IOException {
      booksList = new ArrayList<>();
      membersList = new ArrayList<>();
-     transactionsList = new LinkedList<>();
+     transactionsList = new ArrayList<>();
      bookSearch = new HashMap<>();
      memberSearch = new HashMap<>();
      addLog = new BufferedWriter(new FileWriter("Add Log.txt"));
