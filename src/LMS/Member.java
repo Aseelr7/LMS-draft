@@ -8,7 +8,8 @@ public class Member {
    private   String name;
    private   String email;
    private   String phoneNumber;
-   private ArrayList<Book> borrowedBooks; // implemented Ramin's changes suggestion.
+   private ArrayList<Book> borrowedBooks;
+   private Transactions transaction;
 
     public Member(int memberId, String name, String email, String phoneNumber) {
         this.memberId = memberId;
@@ -53,8 +54,11 @@ public class Member {
             System.out.println("Member Already borrowed a copy of this book, return that first");
         } else if(book.getIsAvailable()) {
             borrowedBooks.add(book);
-            book.decreaseInventory(); // please take a look at this method do a better implementation than me i was not thinking when i wrote it lol - Aseel
+            book.decreaseInventory();
+            transaction = new Transactions(book.getISBN(),getMemberId());
             System.out.println(book.getTitle() + " by: " + book.getAuthor() + " successfully borrowed");
+            System.out.println("**************************************");
+            System.out.println("Transaction Details: " + '\n' + transaction.toString());
         } else System.out.println("Book is currently not Available in the Library");
     }
 
@@ -63,7 +67,8 @@ public class Member {
     public void returnBook(Book book){
         if(borrowedBooks.contains(book)){
         borrowedBooks.remove(book);
-        book.increaseInventory(); // this one as well they are not encapsulated at all
+        book.increaseInventory();
+        transaction = new Transactions(book.getISBN(),getMemberId());
             System.out.println(book.getTitle() + " by: " + book.getAuthor() + " successfully removed");
 
         } else System.out.println("Member never borrowed this book");

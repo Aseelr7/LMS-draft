@@ -1,30 +1,33 @@
 package LMS;
 
 
+import java.time.LocalDateTime;
+
 public class Transactions {
-    private final int transactionId;
+    private int transactionId;
     private final String bookISBN;
     private final int memberId;
-    private final  String  issueDate;
-    private  String  returnDate;
+    private LocalDateTime date;
 
-    public Transactions(int transactionId, String bookISBN, int memberId, String issueDate) {
-        this.transactionId = transactionId;
+
+    public Transactions( String bookISBN, int memberId) {
+        this.transactionId ++;
         this.bookISBN = bookISBN;
         this.memberId = memberId;
-        this.issueDate = issueDate;
+        this.date = LocalDateTime.now();
     }
 
-    public void completeTransaction(String returnDate) {
-        this.returnDate = returnDate;
-    }
+
+
+
 
     @Override
     public String toString() {
         return "TransactionID: " + transactionId + ", Book ISBN: " + bookISBN +
-                ", MemberID: " + memberId + ", Issue Date: " + issueDate +
-                ", Return Date: " + (returnDate != null ? returnDate : "Not Returned");
+                ", MemberID: " + memberId + ", Transaction Date: " + date;
     }
+
+
 }
 
 
