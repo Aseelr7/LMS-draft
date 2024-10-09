@@ -9,7 +9,6 @@ public class Librarian {
         Book book3 = new Book("1234-3", "ThirdBook", "ThirdBookAuthor", "Morphy", 2002, true);
 
 
-
         System.out.println(book1.toString());
 
         // the below methods from Library class called - Salma
@@ -19,7 +18,11 @@ public class Librarian {
         library.insertBook(book2);
         library.insertBook(book3);
         library.displayAllBooks();
-        library.searchBookByISBN("1234-1");
+        Book foundBook = library.searchBookByISBN("1234-4");
+        if (foundBook != null) System.out.println("This Book is in the collection: " + foundBook.toString());
+        else System.out.println("There is no any book in collection with this ISBN");
+
+
         library.deleteBookByISBN("1234-1");
 
 

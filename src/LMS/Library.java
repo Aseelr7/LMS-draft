@@ -22,8 +22,8 @@ public class Library {
         booksList = new ArrayList<>();
         membersList = new ArrayList<>();
         transactionsList = new ArrayList<>();
-        bookSearch = new HashMap<>();
-        memberSearch = new HashMap<>(); // no need to have this
+        bookSearch = new HashMap<>(); // no need to have this
+        memberSearch = new HashMap<>();
 
 
     }
@@ -88,16 +88,24 @@ public class Library {
 It takes a single parameter isbn, which is a String representing the ISBN of the book to search for.
      */
     Book searchBookByISBN(String isbn) {
+                /*
+        for (int i = 0; i < booksList.size(); i++) {
+        Book book = booksList.get(i);
+        if (book.getISBN().equals(isbn)) {
+            return book;
+                 */
         for (Book book : booksList) {
             if (book.getISBN().equals(isbn)) {
                 return book;
+
             }
         }
         return null;
     }
 
     /*
-    The displayAllBooks method is designed to display all the books in the library's collection. It checks if there are any books present
+    The displayAllBooks method is designed to display all the books in the library's collection. It checks if
+    there are any books present
     and, if so, iterates through the list of books to print out their details.
      */
 
