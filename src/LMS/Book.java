@@ -63,12 +63,13 @@ public class Book {
         this.inventory++;
     }
 
-     //if statement is written regarding to check the inventory if  is greater than zero
+     //if  statement is written regarding to check the inventory if  is greater than zero
     public void decreaseInventory(){
         if(this.inventory>0) {
             this.inventory--;
             if (this.inventory == 0) {
                 this.isAvailable = false;
+
             }
         }
     }
