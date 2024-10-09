@@ -4,9 +4,9 @@ public class Librarian {
 
     public static void main(String[] args) {
 
-        Book book1 = new Book("1234-1", "FirstBook", "FirstBookAuthor", "Bob", 2000, true);
-        Book book2 = new Book("1234-2", "SecondBook", "SecondBookAuthor", "Tony", 2001, true);
-        Book book3 = new Book("1234-3", "ThirdBook", "ThirdBookAuthor", "Morphy", 2002, true);
+        Book book1 = new Book("1234-1", "FirstBook", "FirstBookAuthor", "Bob", 2000);
+        Book book2 = new Book("1234-2", "SecondBook", "SecondBookAuthor", "Tony", 2001);
+        Book book3 = new Book("1234-3", "ThirdBook", "ThirdBookAuthor", "Morphy", 2002);
 
 
         System.out.println(book1.toString());
@@ -25,6 +25,16 @@ public class Librarian {
 
         library.deleteBookByISBN("1234-1");
 
+        Member member = new Member(112321, "asfsd", "asdfkadslfkj", "123123123");
+
+        member.borrowBook(book1);
+        member.borrowBook(book1);
+        member.borrowBook(book2);
+        member.returnBook(book1);
+        member.borrowBook(book1);
+
+
+        member.displayBorrowedBooks();
 
     }
 }

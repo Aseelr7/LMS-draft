@@ -28,10 +28,10 @@ public class Library {
 
     }
 
-    public void addMember(int memberID, String name, String email, String phoneNumber, ArrayList<String> borrowedBooks) throws IOException {
-        membersList.add(new Member(memberID, name, email, phoneNumber, borrowedBooks));
+    public void addMember(int memberID, String name, String email, String phoneNumber) throws IOException {
+        membersList.add(new Member(memberID, name, email, phoneNumber));
         addLog.write("\n");
-        addLog.write(memberCounter++ + ": " + memberID + ", " + name + ", " + email + ", " + phoneNumber + ", " + borrowedBooks.get(memberCounter));
+        addLog.write(memberCounter++ + ": " + memberID + ", " + name + ", " + email + ", " + phoneNumber);
         addLog.close();
     }
 
