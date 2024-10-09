@@ -33,7 +33,7 @@ public class Librarian {
 
         Book foundBookByIsbnAndAuthor = library.searchBookByISBNAndAuthor("1734-5", "something");
         if (foundBookByIsbnAndAuthor != null) {
-            System.out.println("This Book is in the collection: " + foundBook.toString());
+            System.out.println("This Book is in the collection: " + foundBookByIsbnAndAuthor.toString());
         } else {
             System.out.println("There is no book in the collection with this ISBN and Author.");
         }
