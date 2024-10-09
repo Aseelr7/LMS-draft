@@ -64,18 +64,20 @@ public class Library {
     }
 
 
-    public void removeMember(int memberID) throws IOException {
-        int counter = 0;
-        // Question from Aseel: Could you please explain this method?
-        membersList.remove(memberID);
+    public void removeMember(int memberID) {
 
-        removeLog.write("\n");
-        removeLog.write(counter++);
-        removeLog.write("placeHolder");
-        removeLog.close();
-        memberCounter--;
+        Member memberToRemove = searchMemberByID(memberID);
+        if (memberToRemove != null) {
+            membersList.remove(memberToRemove);
+            System.out.println("Member removed: " + memberToRemove.getName() + " with " + memberToRemove.getEmail() + ".");
+
+            memberCounter--;
+        } else {
+            System.out.println("Member with this " + memberID + " not found.");
+        }
 
     }
+
 
     // This searchMemberByID method is defined to return a Member object
     Member searchMemberByID(int id) {

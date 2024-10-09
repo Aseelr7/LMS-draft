@@ -57,11 +57,10 @@ public class Librarian {
         }
 
         library.displayAllMember();
-//        try {
-//            library.removeMember(1113);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        library.removeMember(1113);
+
+
+
         member1.borrowBook(book1);
         member1.borrowBook(book1);
         member1.borrowBook(book2);
