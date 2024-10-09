@@ -46,13 +46,11 @@ public class Librarian {
         }
 
         library.displayAllMember();
-        try {
-
-
-            library.removeMember(1113);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            library.removeMember(1113);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         member1.borrowBook(book1);
         member1.borrowBook(book1);
         member1.borrowBook(book2);
