@@ -2,7 +2,6 @@ package LMS;
 
 public class Book {
 
-    // Changed The DataType of ISBN to String -Aseel
 
     private final String ISBN;
     private String title;
@@ -10,32 +9,31 @@ public class Book {
     private String publisher;
     private int yearOfPublication;
     private boolean isAvailable;
+    private int inventory;
 
-    // Changed the constructor calls from this.Attribute to setAttribute(Attribute) - Aseel
-    public Book(String ISBN, String title, String author, String publisher, int yearOfPublication, boolean isAvailable) {
+
+    // Removed Unnecessary variables from the constructor parameters -isAvailable : because if you add a book the constructor already makes it true.
+    public Book(String ISBN, String title, String author, String publisher, int yearOfPublication) {
         this.ISBN = ISBN;
         setTitle(title);
         setAuthor(author);
         setPublisher(publisher);
         setYearOfPublication(yearOfPublication);
         this.isAvailable = true;
+        this.inventory++;
     }
 
-    // Changed The Access Modifiers for Setters to Private and Arranged Them - Aseel
 
     // Getters And Setters
     private void setTitle(String title) {
         this.title = title;
     }
-
     private void setAuthor(String author) {
         this.author = author;
     }
-
     private void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-
     private void setYearOfPublication(int yearOfPublication) {
         this.yearOfPublication = yearOfPublication;
     }
@@ -43,28 +41,33 @@ public class Book {
     public String getISBN() {
         return ISBN;
     }
-
     public String getTitle() {
         return title;
     }
-
     public String getAuthor() {
         return author;
     }
-
+    public int getInventory() {return inventory;}
     public String getPublisher() {
         return publisher;
     }
-
     public int getYearOfPublication() {
         return yearOfPublication;
     }
-
     public boolean getIsAvailable() {return isAvailable;}
 
-    private void makeAvailable(boolean available) {
-        isAvailable = available;
+    // method to increase and decrease the inventory
+
+    // it's here thank you for finding it
+    public void increaseInventory(){
+        this.inventory++;
     }
+
+    public void decreaseInventory(){
+        this.inventory--;
+    }
+
+
 
 
     @Override
