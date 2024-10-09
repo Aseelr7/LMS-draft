@@ -28,23 +28,68 @@ public class Library {
 
     }
 
+
+    /*
+
     public void addMember(int memberID, String name, String email, String phoneNumber) throws IOException {
         membersList.add(new Member(memberID, name, email, phoneNumber));
-        addLog.write("\n");
-        addLog.write(memberCounter++ + ": " + memberID + ", " + name + ", " + email + ", " + phoneNumber);
-        addLog.close();
+
+/*  Note for Aseel:
+ I made some small changes to the method. By creating an instance of Member class, we can directly add the
+ Member object to the membersList.
+ This approach is cleaner and simpler, especially when we create a Member object in Librarian class, making it
+ easy to call the addMember method and pass the object.
+     */
+
+
+    public void addMember(Member member) throws IOException {
+        membersList.add(member);
+        System.out.println(memberCounter++ + ": " + member.getMemberId() + ", " + member.getName() + ", " + member.getEmail() + ", " + member.getPhoneNumber());
+
+
     }
+
+
+    // The purpose of this method is, To displays all the members registered in the library.
+    public void displayAllMember() {
+        if (membersList.isEmpty()) {
+            System.out.println("There is no any registered member in the Library ");
+        } else {
+            for (Member member : membersList)
+                System.out.println(member.toString());
+            System.out.println("****** ****** ****** ******");
+        }
+
+
+    }
+
 
     public void removeMember(int memberID) throws IOException {
         int counter = 0;
+        // Question from Aseel: Could you please explain this method?
         membersList.remove(memberID);
         removeLog.write("\n");
         removeLog.write(counter++);
         removeLog.write("placeHolder");
         removeLog.close();
         memberCounter--;
+
     }
 
+    // This searchMemberByID method is defined to return a Member object
+    Member searchMemberByID(int id) {
+        for (Member member : membersList) {
+            if (member.getMemberId() == id) {
+                return member;
+            }
+
+        }
+        return null;
+
+    }
+
+
+    // *************** *************** *************** *************** *************** *************** ***************
     /*
      * The methods below belong to the Book class, created by Salma.
      * If you have any comments or suggestions, please feel free to share them.
@@ -82,10 +127,9 @@ public class Library {
 
     }
 
-
     /*
     This searchBookByISBN method is defined to return a Book object, indicating that it either returns the found book or null if no book is found.
-It takes a single parameter isbn, which is a String representing the ISBN of the book to search for.
+    It takes a single parameter isbn, which is a String representing the ISBN of the book to search for.
      */
     Book searchBookByISBN(String isbn) {
                 /*
@@ -119,6 +163,6 @@ It takes a single parameter isbn, which is a String representing the ISBN of the
             }
         }
     }
-
-
 }
+
+
