@@ -8,7 +8,7 @@ public class Member {
    private   String name;
    private   String email;
    private   String phoneNumber;
-   private ArrayList<String> borrowedBooks;
+   private ArrayList<String> borrowedBooks; // we can intialize borrowedBooks to avoid null reference. = new Arraylist<>()
 
     public Member(int memberId, String name, String email, String phoneNumber, ArrayList<String> borrowedBooks) {
         this.memberId = memberId;
