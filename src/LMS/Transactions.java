@@ -7,14 +7,22 @@ public class Transactions {
     private int transactionId;
     private final String bookISBN;
     private final int memberId;
-    private LocalDateTime date;
+    private LocalDateTime issueDate;
+    private LocalDateTime returnDate;
 
 
     public Transactions( String bookISBN, int memberId) {
         this.transactionId ++;
         this.bookISBN = bookISBN;
         this.memberId = memberId;
-        this.date = LocalDateTime.now();
+        this.issueDate = LocalDateTime.now();
+    }
+
+    public Transactions (int Id,String bookISBN){
+        this.transactionId ++;
+        this.bookISBN = bookISBN;
+        this.memberId = Id;
+        this.returnDate = LocalDateTime.now();
     }
 
 
@@ -24,7 +32,7 @@ public class Transactions {
     @Override
     public String toString() {
         return "TransactionID: " + transactionId + ", Book ISBN: " + bookISBN +
-                ", MemberID: " + memberId + ", Transaction Date: " + date;
+                ", MemberID: " + memberId + ", Issue Date: " + issueDate + ", Return Date: " + returnDate;
     }
 
 

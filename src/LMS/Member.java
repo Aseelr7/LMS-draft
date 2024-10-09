@@ -68,7 +68,7 @@ public class Member {
         if(borrowedBooks.contains(book)){
         borrowedBooks.remove(book);
         book.increaseInventory();
-        transaction = new Transactions(book.getISBN(),getMemberId());
+        transaction = new Transactions(getMemberId(), book.getISBN());
             System.out.println(book.getTitle() + " by: " + book.getAuthor() + " successfully returned");
 
             System.out.println("**************************************");

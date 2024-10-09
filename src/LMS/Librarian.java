@@ -47,7 +47,6 @@ public class Librarian {
 
 //
 
-        member1.borrowBook(book1);
         try {
             library.addMember(member1);
             library.addMember(member2);
@@ -62,14 +61,12 @@ public class Librarian {
 
 
         member1.borrowBook(book1);
-        member1.borrowBook(book1);
-        member1.borrowBook(book2);
         member1.returnBook(book1);
 
 
-        System.out.println( "This is to only check the search method: " + library.searchMemberByID(1113));
+ /*       System.out.println( "This is to only check the search method: " + library.searchMemberByID(1113));
 
-        library.displayAllMember();
+        library.displayAllMember();*/
     }
 
 }
