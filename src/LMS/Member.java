@@ -69,7 +69,10 @@ public class Member {
         borrowedBooks.remove(book);
         book.increaseInventory();
         transaction = new Transactions(book.getISBN(),getMemberId());
-            System.out.println(book.getTitle() + " by: " + book.getAuthor() + " successfully removed");
+            System.out.println(book.getTitle() + " by: " + book.getAuthor() + " successfully returned");
+
+            System.out.println("**************************************");
+            System.out.println("Transaction Details: " + '\n' + transaction.toString());
 
         } else System.out.println("Member never borrowed this book");
     }
