@@ -68,6 +68,7 @@ public class Library {
         int counter = 0;
         // Question from Aseel: Could you please explain this method?
         membersList.remove(memberID);
+
         removeLog.write("\n");
         removeLog.write(counter++);
         removeLog.write("placeHolder");
@@ -140,6 +141,22 @@ public class Library {
                  */
         for (Book book : booksList) {
             if (book.getISBN().equals(isbn)) {
+                return book;
+
+            }
+        }
+        return null;
+    }
+
+    Book searchBookByISBNAndAuthor(String isbn, String author) {
+                /*
+        for (int i = 0; i < booksList.size(); i++) {
+        Book book = booksList.get(i);
+        if (book.getISBN().equals(isbn)) {
+            return book;
+                 */
+        for (Book book : booksList) {
+            if (book.getISBN().equals(isbn) || book.getAuthor().equals(author)) {
                 return book;
 
             }

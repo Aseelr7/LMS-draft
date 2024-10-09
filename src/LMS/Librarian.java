@@ -22,10 +22,21 @@ public class Librarian {
         library.displayAllBooks();
 
         Book foundBook = library.searchBookByISBN("1234-4");
-        if (foundBook != null) System.out.println("This Book is in the collection: " + foundBook.toString());
-        else System.out.println("There is no any book in collection with this ISBN");
+        if (foundBook != null) {
+            System.out.println("This Book is in the collection: " + foundBook.toString());
+        } else {
+            System.out.println("There is no book in the collection with this ISBN.");
+        }
         library.deleteBookByISBN("1234-2");
+        library.displayAllBooks();
 
+
+        Book foundBookByIsbnAndAuthor = library.searchBookByISBNAndAuthor("1734-5", "something");
+        if (foundBookByIsbnAndAuthor != null) {
+            System.out.println("This Book is in the collection: " + foundBook.toString());
+        } else {
+            System.out.println("There is no book in the collection with this ISBN and Author.");
+        }
 
         // ***********  ***********  ***********  ***********  ***********  ***********  ***********  ***********
 
