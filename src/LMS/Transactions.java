@@ -15,7 +15,6 @@ public class Transactions {
         this.transactionId = ++transactionCounter;
         this.bookISBN = bookISBN;
         this.memberId = memberId;
-        setIssueDate(LocalDate.now());
         transactionsList = new ArrayList<>();
     }
 
@@ -35,7 +34,7 @@ public class Transactions {
     public void markAsReturned() {
         setReturnDate(LocalDate.now());
     }
-
+    public void markAsIssued(){setIssueDate(LocalDate.now());}
     @Override
     public String toString() {
         return "TransactionID: " + transactionId + ", Book ISBN: " + bookISBN +

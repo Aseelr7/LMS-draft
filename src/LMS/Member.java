@@ -57,6 +57,7 @@ public class Member {
             book.decreaseInventory();
             transaction = new Transactions(book.getISBN(),getMemberId());
             transaction.getTransactionsList().add(transaction);
+            transaction.markAsIssued();
             System.out.println(book.getTitle() + " by: " + book.getAuthor() + " successfully borrowed");
             System.out.println("**************************************");
             System.out.println("Transaction Details: " + '\n' + transaction.toString());

@@ -12,7 +12,7 @@ public class Book {
     private int inventory;
 
 
-    // Removed Unnecessary variables from the constructor parameters -isAvailable : because if you add a book the constructor already makes it true.
+
     public Book(String ISBN, String title, String author, String publisher, int yearOfPublication) {
         this.ISBN = ISBN;
         setTitle(title);
