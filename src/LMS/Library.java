@@ -15,7 +15,7 @@ public class Library {
     private Map<Integer, Member> memberSearch;
     private BufferedWriter addLog;
     private BufferedWriter removeLog;
-    public int memberCounter;
+    public static int memberCounter;
 
     public Library() {
         booksList = new ArrayList<>();
@@ -40,7 +40,7 @@ public class Library {
         membersList.add(member);
 
         // Display member info
-        System.out.println(memberCounter++ + ": " + member.getMemberId() + ", " + member.getName() + ", " + member.getEmail() + ", " + member.getPhoneNumber());
+        System.out.println(++memberCounter + ": " + member.getMemberId() + ", " + member.getName() + ", " + member.getEmail() + ", " + member.getPhoneNumber());
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("members.txt"))) {
             for (Member m : membersList) {
                 writer.write(m.getMemberId() + ", " + m.getName() + ", " + m.getEmail() + ", " + m.getPhoneNumber());
