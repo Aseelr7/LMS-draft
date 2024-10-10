@@ -1,7 +1,7 @@
 package LMS;
 
 import java.io.BufferedWriter;
-
+import java.io.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,7 +23,6 @@ public class Library {
         transactionsList = new ArrayList<>();
         memberSearch = new HashMap<>();
 
-
     }
 
 
@@ -39,12 +38,58 @@ public class Library {
      */
 
 
+    //buffer writer
+
+    public void saveDtaToFile() throws IOException {
+        //book .txt
+        try {
+            BufferedWriter bookWriter = new BufferedWriter((new FileWriter("Book.txt")));
+            for (Book book : booksList) {
+                bookWriter.write('\n' + book.getISBN() + "," + book.getTitle() + "," + book.getAuthor() + "," + book.getPublisher() + "," + book.getYearOfPublication() + "," + book.getIsAvailable() + book.getInventory());
+//
+            }
+            bookWriter.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+            //member .txt
+//        try {
+            BufferedWriter memberWriter = new BufferedWriter((new FileWriter("member.txt")));
+            for (Member member : membersList) {
+                memberWriter.write('\n' + member.getMemberId() + "," + member.getName() + " , " + member.getEmail() + " , " + member.getPhoneNumber() + " , " + member.getBorrowedBooks());
+            }
+            memberWriter.close();
+//        } catch (IOException f) {
+//            f.printStackTrace();
+//
+//        }
+            //transaction .txt
+//        try {
+            BufferedWriter transactionWriter = new BufferedWriter((new FileWriter("transaction.txt")));
+            for (Transactions transaction : transactionsList) {
+                transactionWriter.write(transaction.getTransactionId() + " , " + transaction.getBookISBN() + " , " + transaction.getMemberId() + " , " + transaction.getIssueDate() + " , " + transaction.getReturnDate() + " , " + transaction.getTransactionsList());
+//            }
+            }
+            transactionWriter.close();
+        } catch (IOException g) {
+            g.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     public void addMember(Member member) {
         membersList.add(member);
         System.out.println(memberCounter++ + ": " + member.getMemberId() + ", " + member.getName() + ", " + member.getEmail() + ", " + member.getPhoneNumber());
     }
-
-
 
 
     // The purpose of this method is, To displays all the members registered in the library.
