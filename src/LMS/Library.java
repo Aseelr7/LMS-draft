@@ -27,10 +27,7 @@ public class Library {
 
 
     /*
-
-
-
-/*  Note for Aseel:
+ Note for Aseel:
  I made some small changes to the method. By creating an instance of Member class, we can directly add the
  Member object to the membersList.
  This approach is cleaner and simpler, especially when we create a Member object in Librarian class, making it
@@ -38,57 +35,20 @@ public class Library {
      */
 
 
-    //buffer writer
-
-    public void saveDtaToFile() throws IOException {
-        //book .txt
-        try {
-            BufferedWriter bookWriter = new BufferedWriter((new FileWriter("Book.txt")));
-            for (Book book : booksList) {
-                bookWriter.write('\n' + book.getISBN() + "," + book.getTitle() + "," + book.getAuthor() + "," + book.getPublisher() + "," + book.getYearOfPublication() + "," + book.getIsAvailable() + book.getInventory());
-//
-            }
-            bookWriter.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-            //member .txt
-//        try {
-            BufferedWriter memberWriter = new BufferedWriter((new FileWriter("member.txt")));
-            for (Member member : membersList) {
-                memberWriter.write('\n' + member.getMemberId() + "," + member.getName() + " , " + member.getEmail() + " , " + member.getPhoneNumber() + " , " + member.getBorrowedBooks());
-            }
-            memberWriter.close();
-//        } catch (IOException f) {
-//            f.printStackTrace();
-//
-//        }
-            //transaction .txt
-//        try {
-            BufferedWriter transactionWriter = new BufferedWriter((new FileWriter("transaction.txt")));
-            for (Transactions transaction : transactionsList) {
-                transactionWriter.write(transaction.getTransactionId() + " , " + transaction.getBookISBN() + " , " + transaction.getMemberId() + " , " + transaction.getIssueDate() + " , " + transaction.getReturnDate() + " , " + transaction.getTransactionsList());
-//            }
-            }
-            transactionWriter.close();
-        } catch (IOException g) {
-            g.printStackTrace();
-        }
-    }
-
-
-
-
-
-
-
-
-
-
     public void addMember(Member member) {
+
         membersList.add(member);
+
+        // Display member info
         System.out.println(memberCounter++ + ": " + member.getMemberId() + ", " + member.getName() + ", " + member.getEmail() + ", " + member.getPhoneNumber());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("members.txt"))) {
+            for (Member m : membersList) {
+                writer.write(m.getMemberId() + ", " + m.getName() + ", " + m.getEmail() + ", " + m.getPhoneNumber());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -149,10 +109,44 @@ public class Library {
     The insertBook method efficiently adds a new Book object to the library's collection and informs the user of the successful addition
      by displaying the book's title.
      */
-    public void insertBook(Book newBook) {
-        booksList.add(newBook);
-        System.out.println("One new book added: " + newBook.getTitle() + " by " + newBook.getAuthor() + ".");
+
+    /*
+     public void addMember(Member member) {
+
+        membersList.add(member);
+
+        // Display member info
+        System.out.println(memberCounter++ + ": " + member.getMemberId() + ", " + member.getName() + ", " + member.getEmail() + ", " + member.getPhoneNumber());
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("members.txt"))) {
+            for (Member m : membersList) {
+                writer.write(m.getMemberId() + ", " + m.getName() + ", " + m.getEmail() + ", " + m.getPhoneNumber());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+     */
+    public void insertBook(Book newBook) {
+        // Add the book to the list
+        booksList.add(newBook);
+
+        // Display book info
+        System.out.println("One new book added: " + newBook.getTitle() + " by " + newBook.getAuthor() + ".");
+
+        // Write all books to the file
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("books.txt"))) {
+            for (Book b : booksList) {
+                writer.write("ISBN: " + b.getISBN() + ", Title: " + b.getTitle() + ", Author: " + b.getAuthor() + ", Publisher: " + b.getPublisher() + ", Year: " + b.getYearOfPublication());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error writing books to file: " + e.getMessage());
+        }
+    }
+
+
+
 
 
     /*

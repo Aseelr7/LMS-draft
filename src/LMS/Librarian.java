@@ -25,11 +25,15 @@ public class Librarian {
         Member member1 = new Member(1, "Tony Morphy", "tony.morphy@gmail.com", "555-1234");
         Member member2 = new Member(2, "Mark Zuckerberg", "mark.zuck@meta.com", "555-5678");
         Member member3 = new Member(3, "Jeff Bezos", "jeff.bezos@amazon.com", "555-9101");
+        Member member4 = new Member(4, "Jack Martin", "jack.martin@amazon.com", "777-9101");
+        Member member5 = new Member(5, "Mike Toe", "mike.toe@amazon.com", "777-9999");
 
         // Adding Members
         library.addMember(member1);
         library.addMember(member2);
         library.addMember(member3);
+        library.addMember(member4);
+        library.addMember(member5);
 
         // Menu Interface
         int choice;
@@ -47,7 +51,8 @@ public class Librarian {
             System.out.println("9. Borrow a Book");
             System.out.println("10. Return a Book");
             System.out.println("11. Display Borrowed Books of a Member");
-            System.out.println("12. Exit");
+            System.out.println("12. Add a Book");
+            System.out.println("13. Exit");
 
             System.out.print("Please enter your choice: ");
             choice = scanner.nextInt();
@@ -114,7 +119,7 @@ public class Librarian {
                 case 7: // Search for a member by ID
                     System.out.print("Enter Member ID to search: ");
                     int searchMemberId = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline character
+                    scanner.nextLine();
                     Member foundMember = library.searchMemberByID(searchMemberId);
                     if (foundMember != null) {
                         System.out.println("Found Member: " + foundMember.toString());
@@ -126,7 +131,7 @@ public class Librarian {
                 case 8: // Remove a member
                     System.out.print("Enter Member ID to remove: ");
                     int removeMemberId = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline character
+                    scanner.nextLine();
                     library.removeMember(removeMemberId);
                     System.out.println("Member removed successfully.");
                     break;
@@ -134,7 +139,7 @@ public class Librarian {
                 case 9: // Borrow a book
                     System.out.print("Enter Member ID: ");
                     int borrowMemberId = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline character
+                    scanner.nextLine();
                     System.out.print("Enter ISBN of the book to borrow: ");
                     String borrowIsbn = scanner.nextLine();
 
@@ -181,7 +186,25 @@ public class Librarian {
                     }
                     break;
 
-                case 12: // Exit
+                case 12: // Add a new book
+                    System.out.print("Enter ISBN: ");
+                    String isbn = scanner.nextLine();
+                    System.out.print("Enter Title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter Author: ");
+                    String author = scanner.nextLine();
+                    System.out.print("Enter Publisher: ");
+                    String publisher = scanner.nextLine();
+                    System.out.print("Enter Year of Publication: ");
+                    int year = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Book newBook = new Book(isbn, title, author, publisher, year);
+                    library.insertBook(newBook);
+                    System.out.println("Book added successfully.");
+                    break;
+
+                case 13: // Exit
                     System.out.println("Exiting the system. Goodbye!");
                     break;
 
@@ -189,7 +212,6 @@ public class Librarian {
                     System.out.println("Invalid choice. Please select again.");
                     break;
             }
-        } while (choice != 12); // Loop until the user chooses to exit
-
+        } while (choice != 13); // Loop until the user chooses to exit
     }
 }
