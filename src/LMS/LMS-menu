@@ -1,0 +1,169 @@
+Bismillah
+note:-- hope you all are well by the time you see the code.
+
+this code is for a library management system that helps manage books and members.
+it lets users add or remove books and members easily.
+users can also issue books to members and return them when done.
+the program uses a library class for storing data and needs book and
+member classes to create objects for books and members.
+it can save and load data from files to keep information when the program is closed.
+
+we might want to check the Library class and add the methods
+for loading and saving data.
+Also to make sure we adjust the Book and Member classes if needed.
+If you see anything else that needs to be changed in the code please feel free to change it.
+*/
+
+import java.util.Scanner;
+
+public class LibraryManagementSystem {
+    private Library library; 
+    private Scanner scanner;
+
+    public LibraryManagementSystem() {
+        library = new Library();
+        scanner = new Scanner(System.in);
+        // load data from files
+        library.loadBooksFromFile(); 
+        library.loadMembersFromFile(); 
+    }
+
+    public void displayMenu() {
+        int choice;
+        do {
+            System.out.println("\n--- Library Management System ---");
+            System.out.println("1. Add Book");
+            System.out.println("2. Remove Book");
+            System.out.println("3. Add Member");
+            System.out.println("4. Remove Member");
+            System.out.println("5. Issue Book");
+            System.out.println("6. Return Book");
+            System.out.println("7. View All Books");
+            System.out.println("8. View All Members");
+            System.out.println("9. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();           
+
+            switch (choice) {
+                case 1:
+                    addBook();
+                    break;
+                case 2:
+                    removeBook();
+                    break;
+                case 3:
+                    addMember();
+                    break;
+                case 4:
+                    removeMember();
+                    break;
+                case 5:
+                    issueBook();
+                    break;
+                case 6:
+                    returnBook();
+                    break;
+                case 7:
+                    viewAllBooks();
+                    break;
+                case 8:
+                    viewAllMembers();
+                    break;
+                case 9:
+                    System.out.println("Exiting the system. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 9);
+
+        // save data to files before exiting 
+        library.saveBooksToFile(); 
+        library.saveMembersToFile(); 
+    }
+
+    private void addBook() {
+        System.out.print("Enter ISBN: ");
+        String ISBN = scanner.nextLine();
+        System.out.print("Enter title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter author: ");
+        String author = scanner.nextLine();
+        System.out.print("Enter publisher: ");
+        String publisher = scanner.nextLine();
+        System.out.print("Enter year of publication: ");
+        int yearOfPublication = scanner.nextInt();
+        scanner.nextLine(); 
+
+        Book book = new Book(ISBN, title, author, publisher, yearOfPublication);
+        library.addBook(book);
+        System.out.println("Book added successfully.");
+    }
+
+    private void removeBook() {
+        System.out.print("Enter ISBN of the book to remove: ");
+        String ISBN = scanner.nextLine();
+        library.removeBook(ISBN);
+        System.out.println("Book removed successfully.");
+    }
+
+    private void addMember() {
+        System.out.print("Enter member ID: ");
+        String memberId = scanner.nextLine();
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter email: ");
+        String email = scanner.nextLine();
+        System.out.print("Enter phone number: ");
+        String phoneNumber = scanner.nextLine();
+
+        Member member = new Member(memberId, name, email, phoneNumber);
+        library.addMember(member);
+        System.out.println("Member added successfully.");
+    }
+
+    private void removeMember() {
+        System.out.print("Enter member ID to remove: ");
+        String memberId = scanner.nextLine();
+        library.removeMember(memberId);
+        System.out.println("Member removed successfully.");
+    }
+
+    private void issueBook() {
+        System.out.print("Enter member ID: ");
+        String memberId = scanner.nextLine();
+        System.out.print("Enter ISBN of the book to issue: ");
+        String ISBN = scanner.nextLine();
+        // the logic for issuing the book goes here
+        System.out.println("Book issued successfully.");
+    }
+
+    private void returnBook() {
+        System.out.print("Enter member ID: ");
+        String memberId = scanner.nextLine();
+        System.out.print("Enter ISBN of the book to return: ");
+        String ISBN = scanner.nextLine();
+        // and the logic for returning the book goes here 
+        System.out.println("Book returned successfully.");
+    }
+
+    private void viewAllBooks() {
+        System.out.println("\n--- List of Books ---");
+        for (Book book : library.getBooks()) {
+            System.out.println(book);
+        }
+    }
+
+    private void viewAllMembers() {
+        System.out.println("\n--- List of Members ---");
+        for (Member member : library.getMembers()) {
+            System.out.println(member);
+        }
+    }
+
+    public static void main(String[] args) {
+        LibraryManagementSystem lms = new LibraryManagementSystem();
+        lms.displayMenu();
+    }
+}
