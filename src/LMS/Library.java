@@ -53,7 +53,7 @@ public class Library {
 
 
     // The purpose of this method is, To displays all the members registered in the library.
-    public void displayAllMember() {
+    public void displayAllMemberFromTextFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader("members.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -65,6 +65,17 @@ public class Library {
         }
     }
 
+    public void displayAllMemberFromTheList() {
+        if (membersList.isEmpty()) {
+            System.out.println("There is no any registered member in the Library ");
+        } else {
+            for (Member member : membersList)
+                System.out.println(member.toString());
+            System.out.println("****** ****** ****** ******");
+        }
+
+
+    }
 
 
     public void removeMember(int memberID) {
@@ -192,7 +203,7 @@ public class Library {
     and, if so, iterates through the list of books to print out their details.
      */
 
-    public void displayAllBooks() {
+    public void displayAllBooksFromTextFile() {
         try (BufferedReader reader = new BufferedReader(new FileReader("books.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -204,6 +215,17 @@ public class Library {
         }
     }
 
+    public void displayAllBooksFromList() {
+        if (booksList.isEmpty()) {
+            System.out.println("No books in the library.");
+        } else {
+            for (Book book : booksList) {
+                System.out.println(book.toString());
+                System.out.println("****** ****** ****** ******");
+            }
+        }
+    }
 }
+
 
 

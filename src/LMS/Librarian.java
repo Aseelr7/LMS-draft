@@ -61,7 +61,7 @@ public class Librarian {
             switch (choice) {
                 case 1: // Display all books
                     System.out.println("Displaying all books:");
-                    library.displayAllBooks();
+                    library.displayAllBooksFromList();
                     break;
 
                 case 2: // Search for a book by ISBN
@@ -113,7 +113,7 @@ public class Librarian {
 
                 case 6: // Display all members
                     System.out.println("Displaying all members:");
-                    library.displayAllMember();
+                    library.displayAllMemberFromTheList();
                     break;
 
                 case 7: // Search for a member by ID
