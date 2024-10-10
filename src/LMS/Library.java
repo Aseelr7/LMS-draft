@@ -110,23 +110,6 @@ public class Library {
      by displaying the book's title.
      */
 
-    /*
-     public void addMember(Member member) {
-
-        membersList.add(member);
-
-        // Display member info
-        System.out.println(memberCounter++ + ": " + member.getMemberId() + ", " + member.getName() + ", " + member.getEmail() + ", " + member.getPhoneNumber());
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("members.txt"))) {
-            for (Member m : membersList) {
-                writer.write(m.getMemberId() + ", " + m.getName() + ", " + m.getEmail() + ", " + m.getPhoneNumber());
-                writer.newLine();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-     */
     public void insertBook(Book newBook) {
         // Add the book to the list
         booksList.add(newBook);
