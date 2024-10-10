@@ -35,193 +35,200 @@ public class Librarian {
         library.addMember(member4);
         library.addMember(member5);
 
-        // Menu Interface
-        int choice;
-        do {
-            // Display menu options for user
-            System.out.println("\n--- Library Management System Menu ---");
-            System.out.println("1. Display All Books");
-            System.out.println("2. Search for a Book by ISBN");
-            System.out.println("3. Search for a Book by ISBN and Author");
-            System.out.println("4. Add a Book");
-            System.out.println("5. Delete a Book by ISBN");
-            System.out.println("6. Display All Members");
-            System.out.println("7. Search for a Member by ID");
-            System.out.println("8. Add a Member");
-            System.out.println("9. Remove a Member");
-            System.out.println("10. Borrow a Book");
-            System.out.println("11. Return a Book");
-            System.out.println("12. Display Borrowed Books of a Member");
-            System.out.println("13. Load Books from Text File");
-            System.out.println("14. Load Members from Text File");
-            System.out.println("15. Exit");
 
-            System.out.print("Please enter your choice: ");
-            choice = scanner.nextInt();
-            scanner.nextLine();
+        try {
 
-            switch (choice) {
-                case 1: // Display all books
-                    System.out.println("Displaying all books:");
-                    library.displayAllBooksFromList();
-                    break;
+            // Menu Interface
+            int choice;
+            do {
+                // Display menu options for user
+                System.out.println("\n--- Library Management System Menu ---");
+                System.out.println("1. Display All Books");
+                System.out.println("2. Search for a Book by ISBN");
+                System.out.println("3. Search for a Book by ISBN and Author");
+                System.out.println("4. Add a Book");
+                System.out.println("5. Delete a Book by ISBN");
+                System.out.println("6. Display All Members");
+                System.out.println("7. Search for a Member by ID");
+                System.out.println("8. Add a Member");
+                System.out.println("9. Remove a Member");
+                System.out.println("10. Borrow a Book");
+                System.out.println("11. Return a Book");
+                System.out.println("12. Display Borrowed Books of a Member");
+                System.out.println("13. Load Books from Text File");
+                System.out.println("14. Load Members from Text File");
+                System.out.println("15. Exit");
 
-                case 2: // Search for a book by ISBN
-                    System.out.print("Enter ISBN to search: ");
-                    String searchIsbn = scanner.nextLine();
-                    Book foundBook = library.searchBookByISBN(searchIsbn);
-                    if (foundBook != null) {
-                        System.out.println("Found Book: " + foundBook.toString());
-                    } else {
-                        System.out.println("Book not found by ISBN.");
-                    }
-                    break;
+                System.out.print("Please enter your choice: ");
+                choice = scanner.nextInt();
+                scanner.nextLine();
 
-                case 3: // Search for a book by ISBN and Author
-                    System.out.print("Enter ISBN: ");
-                    String searchIsbn2 = scanner.nextLine();
-                    System.out.print("Enter Author: ");
-                    String searchAuthor = scanner.nextLine();
-                    Book foundBookByIsbnAndAuthor = library.searchBookByISBNAndAuthor(searchIsbn2, searchAuthor);
-                    if (foundBookByIsbnAndAuthor != null) {
-                        System.out.println("Found Book by ISBN and Author: " + foundBookByIsbnAndAuthor.toString());
-                    } else {
-                        System.out.println("Book not found by ISBN and Author.");
-                    }
-                    break;
+                switch (choice) {
+                    case 1: // Display all books
+                        System.out.println("Displaying all books:");
+                        library.displayAllBooksFromList();
+                        break;
 
-                case 4: // Add a new book
-                    System.out.print("Enter ISBN: ");
-                    String isbn = scanner.nextLine();
-                    System.out.print("Enter Title: ");
-                    String title = scanner.nextLine();
-                    System.out.print("Enter Author: ");
-                    String author = scanner.nextLine();
-                    System.out.print("Enter Publisher: ");
-                    String publisher = scanner.nextLine();
-                    System.out.print("Enter Year of Publication: ");
-                    int year = scanner.nextInt();
-                    scanner.nextLine();
+                    case 2: // Search for a book by ISBN
+                        System.out.print("Enter ISBN to search: ");
+                        String searchIsbn = scanner.nextLine();
+                        Book foundBook = library.searchBookByISBN(searchIsbn);
+                        if (foundBook != null) {
+                            System.out.println("Found Book: " + foundBook.toString());
+                        } else {
+                            System.out.println("Book not found by ISBN.");
+                        }
+                        break;
 
-                    Book newBook = new Book(isbn, title, author, publisher, year);
-                    library.insertBook(newBook);
-                    System.out.println("Book added successfully.");
-                    break;
+                    case 3: // Search for a book by ISBN and Author
+                        System.out.print("Enter ISBN: ");
+                        String searchIsbn2 = scanner.nextLine();
+                        System.out.print("Enter Author: ");
+                        String searchAuthor = scanner.nextLine();
+                        Book foundBookByIsbnAndAuthor = library.searchBookByISBNAndAuthor(searchIsbn2, searchAuthor);
+                        if (foundBookByIsbnAndAuthor != null) {
+                            System.out.println("Found Book by ISBN and Author: " + foundBookByIsbnAndAuthor.toString());
+                        } else {
+                            System.out.println("Book not found by ISBN and Author.");
+                        }
+                        break;
 
-                case 5: // Delete a book by ISBN
-                    System.out.print("Enter ISBN to delete: ");
-                    String deleteIsbn = scanner.nextLine();
-                    library.deleteBookByISBN(deleteIsbn);
-                    System.out.println("Book deleted successfully.");
-                    break;
+                    case 4: // Add a new book
+                        System.out.print("Enter ISBN: ");
+                        String isbn = scanner.nextLine();
+                        System.out.print("Enter Title: ");
+                        String title = scanner.nextLine();
+                        System.out.print("Enter Author: ");
+                        String author = scanner.nextLine();
+                        System.out.print("Enter Publisher: ");
+                        String publisher = scanner.nextLine();
+                        System.out.print("Enter Year of Publication: ");
+                        int year = scanner.nextInt();
+                        scanner.nextLine();
 
-                case 6: // Display all members
-                    System.out.println("Displaying all members:");
-                    library.displayAllMemberFromTheList();
-                    break;
+                        Book newBook = new Book(isbn, title, author, publisher, year);
+                        library.insertBook(newBook);
+                        System.out.println("Book added successfully.");
+                        break;
 
-                case 7: // Search for a member by ID
-                    System.out.print("Enter Member ID to search: ");
-                    int searchMemberId = scanner.nextInt();
-                    scanner.nextLine();
-                    Member foundMember = library.searchMemberByID(searchMemberId);
-                    if (foundMember != null) {
-                        System.out.println("Found Member: " + foundMember.toString());
-                    } else {
-                        System.out.println("Member not found by ID.");
-                    }
-                    break;
+                    case 5: // Delete a book by ISBN
+                        System.out.print("Enter ISBN to delete: ");
+                        String deleteIsbn = scanner.nextLine();
+                        library.deleteBookByISBN(deleteIsbn);
+                        System.out.println("Book deleted successfully.");
+                        break;
 
-                case 8: // Add a new member
-                    System.out.print("Enter Member ID: ");
-                    int memberId = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Enter Member Name: ");
-                    String memberName = scanner.nextLine();
-                    System.out.print("Enter Member Email: ");
-                    String memberEmail = scanner.nextLine();
-                    System.out.print("Enter Member Phone: ");
-                    String memberPhone = scanner.nextLine();
+                    case 6: // Display all members
+                        System.out.println("Displaying all members:");
+                        library.displayAllMemberFromTheList();
+                        break;
 
-                    Member newMember = new Member(memberId, memberName, memberEmail, memberPhone);
-                    library.addMember(newMember);
-                    System.out.println("Member added successfully.");
-                    break;
+                    case 7: // Search for a member by ID
+                        System.out.print("Enter Member ID to search: ");
+                        int searchMemberId = scanner.nextInt();
+                        scanner.nextLine();
+                        Member foundMember = library.searchMemberByID(searchMemberId);
+                        if (foundMember != null) {
+                            System.out.println("Found Member: " + foundMember.toString());
+                        } else {
+                            System.out.println("Member not found by ID.");
+                        }
+                        break;
 
-                case 9: // Remove a member
-                    System.out.print("Enter Member ID to remove: ");
-                    int removeMemberId = scanner.nextInt();
-                    scanner.nextLine();
-                    library.removeMember(removeMemberId);
-                    System.out.println("Member removed successfully.");
-                    break;
+                    case 8: // Add a new member
+                        System.out.print("Enter Member ID: ");
+                        int memberId = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Enter Member Name: ");
+                        String memberName = scanner.nextLine();
+                        System.out.print("Enter Member Email: ");
+                        String memberEmail = scanner.nextLine();
+                        System.out.print("Enter Member Phone: ");
+                        String memberPhone = scanner.nextLine();
 
-                case 10: // Borrow a book
-                    System.out.print("Enter Member ID: ");
-                    int borrowMemberId = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Enter ISBN of the book to borrow: ");
-                    String borrowIsbn = scanner.nextLine();
+                        Member newMember = new Member(memberId, memberName, memberEmail, memberPhone);
+                        library.addMember(newMember);
+                        System.out.println("Member added successfully.");
+                        break;
 
-                    Member borrowMember = library.searchMemberByID(borrowMemberId);
-                    Book borrowBook = library.searchBookByISBN(borrowIsbn);
+                    case 9: // Remove a member
+                        System.out.print("Enter Member ID to remove: ");
+                        int removeMemberId = scanner.nextInt();
+                        scanner.nextLine();
+                        library.removeMember(removeMemberId);
+                        System.out.println("Member removed successfully.");
+                        break;
 
-                    if (borrowMember != null && borrowBook != null) {
-                        borrowMember.borrowBook(borrowBook);
-                        System.out.println("Book borrowed successfully.");
-                    } else {
-                        System.out.println("Invalid member ID or ISBN.");
-                    }
-                    break;
+                    case 10: // Borrow a book
+                        System.out.print("Enter Member ID: ");
+                        int borrowMemberId = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Enter ISBN of the book to borrow: ");
+                        String borrowIsbn = scanner.nextLine();
 
-                case 11: // Return a book
-                    System.out.print("Enter Member ID: ");
-                    int returnMemberId = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Enter ISBN of the book to return: ");
-                    String returnIsbn = scanner.nextLine();
+                        Member borrowMember = library.searchMemberByID(borrowMemberId);
+                        Book borrowBook = library.searchBookByISBN(borrowIsbn);
 
-                    Member returnMember = library.searchMemberByID(returnMemberId);
-                    Book returnBook = library.searchBookByISBN(returnIsbn);
+                        if (borrowMember != null && borrowBook != null) {
+                            borrowMember.borrowBook(borrowBook);
+                            System.out.println("Book borrowed successfully.");
+                        } else {
+                            System.out.println("Invalid member ID or ISBN.");
+                        }
+                        break;
 
-                    if (returnMember != null && returnBook != null) {
-                        returnMember.returnBook(returnBook);
-                        System.out.println("Book returned successfully.");
-                    } else {
-                        System.out.println("Invalid member ID or ISBN.");
-                    }
-                    break;
+                    case 11: // Return a book
+                        System.out.print("Enter Member ID: ");
+                        int returnMemberId = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.print("Enter ISBN of the book to return: ");
+                        String returnIsbn = scanner.nextLine();
 
-                case 12: // Display borrowed books of a member
-                    System.out.print("Enter Member ID: ");
-                    int displayMemberId = scanner.nextInt();
-                    scanner.nextLine();
+                        Member returnMember = library.searchMemberByID(returnMemberId);
+                        Book returnBook = library.searchBookByISBN(returnIsbn);
 
-                    Member displayMember = library.searchMemberByID(displayMemberId);
-                    if (displayMember != null) {
-                        System.out.println("Displaying borrowed books for " + displayMember.getName() + ":");
-                        displayMember.displayBorrowedBooks();
-                    } else {
-                        System.out.println("Member not found by ID.");
-                    }
-                    break;
+                        if (returnMember != null && returnBook != null) {
+                            returnMember.returnBook(returnBook);
+                            System.out.println("Book returned successfully.");
+                        } else {
+                            System.out.println("Invalid member ID or ISBN.");
+                        }
+                        break;
 
-                case 13: // Load books from text file
-                    library.displayAllBooksFromTextFile();
-                    break;
+                    case 12: // Display borrowed books of a member
+                        System.out.print("Enter Member ID: ");
+                        int displayMemberId = scanner.nextInt();
+                        scanner.nextLine();
 
-                case 14: // Load members from text file
-                    library.displayAllMemberFromTextFile();
-                    break;
+                        Member displayMember = library.searchMemberByID(displayMemberId);
+                        if (displayMember != null) {
+                            System.out.println("Displaying borrowed books for " + displayMember.getName() + ":");
+                            displayMember.displayBorrowedBooks();
+                        } else {
+                            System.out.println("Member not found by ID.");
+                        }
+                        break;
 
-                case 15: // Exit
-                    System.out.println("Exiting the system!");
-                    break;
+                    case 13: // Load books from text file
+                        library.displayAllBooksFromTextFile();
+                        break;
 
-                default:
-                    System.out.println("Invalid choice. Please select again.");
-                    break;
-            }
-        } while (choice != 15);
+                    case 14: // Load members from text file
+                        library.displayAllMemberFromTextFile();
+                        break;
+
+                    case 15: // Exit
+                        System.out.println("Exiting the system!");
+                        break;
+
+                    default:
+                        System.out.println("Invalid choice. Please select again.");
+                        break;
+                }
+            } while (choice != 15);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 }
