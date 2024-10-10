@@ -43,16 +43,18 @@ public class Librarian {
             System.out.println("1. Display All Books");
             System.out.println("2. Search for a Book by ISBN");
             System.out.println("3. Search for a Book by ISBN and Author");
-            System.out.println("4. Delete a Book by ISBN");
-            System.out.println("5. Add a Member");
+            System.out.println("4. Add a Book");
+            System.out.println("5. Delete a Book by ISBN");
             System.out.println("6. Display All Members");
             System.out.println("7. Search for a Member by ID");
-            System.out.println("8. Remove a Member");
-            System.out.println("9. Borrow a Book");
-            System.out.println("10. Return a Book");
-            System.out.println("11. Display Borrowed Books of a Member");
-            System.out.println("12. Add a Book");
-            System.out.println("13. Exit");
+            System.out.println("8. Add a Member");
+            System.out.println("9. Remove a Member");
+            System.out.println("10. Borrow a Book");
+            System.out.println("11. Return a Book");
+            System.out.println("12. Display Borrowed Books of a Member");
+            System.out.println("13. Load Books from Text File");
+            System.out.println("14. Load Members from Text File");
+            System.out.println("15. Exit");
 
             System.out.print("Please enter your choice: ");
             choice = scanner.nextInt();
@@ -88,27 +90,29 @@ public class Librarian {
                     }
                     break;
 
-                case 4: // Delete a book by ISBN
+                case 4: // Add a new book
+                    System.out.print("Enter ISBN: ");
+                    String isbn = scanner.nextLine();
+                    System.out.print("Enter Title: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Enter Author: ");
+                    String author = scanner.nextLine();
+                    System.out.print("Enter Publisher: ");
+                    String publisher = scanner.nextLine();
+                    System.out.print("Enter Year of Publication: ");
+                    int year = scanner.nextInt();
+                    scanner.nextLine();
+
+                    Book newBook = new Book(isbn, title, author, publisher, year);
+                    library.insertBook(newBook);
+                    System.out.println("Book added successfully.");
+                    break;
+
+                case 5: // Delete a book by ISBN
                     System.out.print("Enter ISBN to delete: ");
                     String deleteIsbn = scanner.nextLine();
                     library.deleteBookByISBN(deleteIsbn);
                     System.out.println("Book deleted successfully.");
-                    break;
-
-                case 5: // Add a new member
-                    System.out.print("Enter Member ID: ");
-                    int memberId = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Enter Member Name: ");
-                    String memberName = scanner.nextLine();
-                    System.out.print("Enter Member Email: ");
-                    String memberEmail = scanner.nextLine();
-                    System.out.print("Enter Member Phone: ");
-                    String memberPhone = scanner.nextLine();
-
-                    Member newMember = new Member(memberId, memberName, memberEmail, memberPhone);
-                    library.addMember(newMember);
-                    System.out.println("Member added successfully.");
                     break;
 
                 case 6: // Display all members
@@ -128,7 +132,23 @@ public class Librarian {
                     }
                     break;
 
-                case 8: // Remove a member
+                case 8: // Add a new member
+                    System.out.print("Enter Member ID: ");
+                    int memberId = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter Member Name: ");
+                    String memberName = scanner.nextLine();
+                    System.out.print("Enter Member Email: ");
+                    String memberEmail = scanner.nextLine();
+                    System.out.print("Enter Member Phone: ");
+                    String memberPhone = scanner.nextLine();
+
+                    Member newMember = new Member(memberId, memberName, memberEmail, memberPhone);
+                    library.addMember(newMember);
+                    System.out.println("Member added successfully.");
+                    break;
+
+                case 9: // Remove a member
                     System.out.print("Enter Member ID to remove: ");
                     int removeMemberId = scanner.nextInt();
                     scanner.nextLine();
@@ -136,7 +156,7 @@ public class Librarian {
                     System.out.println("Member removed successfully.");
                     break;
 
-                case 9: // Borrow a book
+                case 10: // Borrow a book
                     System.out.print("Enter Member ID: ");
                     int borrowMemberId = scanner.nextInt();
                     scanner.nextLine();
@@ -154,7 +174,7 @@ public class Librarian {
                     }
                     break;
 
-                case 10: // Return a book
+                case 11: // Return a book
                     System.out.print("Enter Member ID: ");
                     int returnMemberId = scanner.nextInt();
                     scanner.nextLine();
@@ -172,7 +192,7 @@ public class Librarian {
                     }
                     break;
 
-                case 11: // Display borrowed books of a member
+                case 12: // Display borrowed books of a member
                     System.out.print("Enter Member ID: ");
                     int displayMemberId = scanner.nextInt();
                     scanner.nextLine();
@@ -186,32 +206,22 @@ public class Librarian {
                     }
                     break;
 
-                case 12: // Add a new book
-                    System.out.print("Enter ISBN: ");
-                    String isbn = scanner.nextLine();
-                    System.out.print("Enter Title: ");
-                    String title = scanner.nextLine();
-                    System.out.print("Enter Author: ");
-                    String author = scanner.nextLine();
-                    System.out.print("Enter Publisher: ");
-                    String publisher = scanner.nextLine();
-                    System.out.print("Enter Year of Publication: ");
-                    int year = scanner.nextInt();
-                    scanner.nextLine();
-
-                    Book newBook = new Book(isbn, title, author, publisher, year);
-                    library.insertBook(newBook);
-                    System.out.println("Book added successfully.");
+                case 13: // Load books from text file
+                    library.displayAllBooksFromTextFile();
                     break;
 
-                case 13: // Exit
-                    System.out.println("Exiting the system. Goodbye!");
+                case 14: // Load members from text file
+                    library.displayAllMemberFromTextFile();
+                    break;
+
+                case 15: // Exit
+                    System.out.println("Exiting the system!");
                     break;
 
                 default:
                     System.out.println("Invalid choice. Please select again.");
                     break;
             }
-        } while (choice != 13); // Loop until the user chooses to exit
+        } while (choice != 15);
     }
 }
