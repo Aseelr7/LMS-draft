@@ -54,16 +54,17 @@ public class Library {
 
     // The purpose of this method is, To displays all the members registered in the library.
     public void displayAllMember() {
-        if (membersList.isEmpty()) {
-            System.out.println("There is no any registered member in the Library ");
-        } else {
-            for (Member member : membersList)
-                System.out.println(member.toString());
-            System.out.println("****** ****** ****** ******");
+        try (BufferedReader reader = new BufferedReader(new FileReader("members.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);  // Display data from the members file
+                System.out.println("****** ****** ****** ******");
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading from file: " + e.getMessage());
         }
-
-
     }
+
 
 
     public void removeMember(int memberID) {
@@ -192,15 +193,17 @@ public class Library {
      */
 
     public void displayAllBooks() {
-        if (booksList.isEmpty()) {
-            System.out.println("No books in the library.");
-        } else {
-            for (Book book : booksList) {
-                System.out.println(book.toString());
+        try (BufferedReader reader = new BufferedReader(new FileReader("books.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);  // Display data from book
                 System.out.println("****** ****** ****** ******");
             }
+        } catch (IOException e) {
+            System.out.println("Error reading from file: " + e.getMessage());
         }
     }
+
 }
 
 
