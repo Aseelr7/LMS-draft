@@ -55,8 +55,8 @@ public class Librarian {
                 System.out.println("10. Borrow a Book");
                 System.out.println("11. Return a Book");
                 System.out.println("12. Display Borrowed Books of a Member");
-                System.out.println("13. Load Books from Text File");
-                System.out.println("14. Load Members from Text File");
+                System.out.println("13. Book history from Text File");
+                System.out.println("14. Member history from Text File");
                 System.out.println("15. Exit");
 
                 System.out.print("Please enter your choice: ");
