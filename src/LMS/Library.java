@@ -12,7 +12,6 @@ public class Library {
     private List<Book> booksList;
     private List<Member> membersList;
     private List<Transactions> transactionsList;
-    private Map<Integer, Book> bookSearch; // No need for this since we can search only by ISBN and that is from type of String
     private Map<Integer, Member> memberSearch;
     private BufferedWriter addLog;
     private BufferedWriter removeLog;
@@ -22,7 +21,6 @@ public class Library {
         booksList = new ArrayList<>();
         membersList = new ArrayList<>();
         transactionsList = new ArrayList<>();
-        bookSearch = new HashMap<>(); // no need to have this
         memberSearch = new HashMap<>();
 
 
@@ -42,12 +40,12 @@ public class Library {
      */
 
 
-    public void addMember(Member member) throws IOException {
+    public void addMember(Member member) {
         membersList.add(member);
         System.out.println(memberCounter++ + ": " + member.getMemberId() + ", " + member.getName() + ", " + member.getEmail() + ", " + member.getPhoneNumber());
-
-
     }
+
+
 
 
     // The purpose of this method is, To displays all the members registered in the library.
@@ -142,7 +140,7 @@ public class Library {
             return book;
                  */
         for (Book book : booksList) {
-            if (book.getISBN().equals(isbn)) {
+            if (book.getISBN().equalsIgnoreCase(isbn)) {
                 return book;
 
             }
@@ -158,7 +156,7 @@ public class Library {
             return book;
                  */
         for (Book book : booksList) {
-            if (book.getISBN().equals(isbn) || book.getAuthor().equals(author)) {
+            if (book.getISBN().equalsIgnoreCase(isbn) || book.getAuthor().equalsIgnoreCase(author)) {
                 return book;
 
             }

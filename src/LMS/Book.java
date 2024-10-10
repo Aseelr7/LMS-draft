@@ -41,9 +41,7 @@ public class Book {
     public String getISBN() {
         return ISBN;
     }
-    public String getTitle() {
-        return title;
-    }
+    public String getTitle() {return title;}
     public String getAuthor() {
         return author;
     }
@@ -56,20 +54,18 @@ public class Book {
     }
     public boolean getIsAvailable() {return isAvailable;}
 
-    // method to increase and decrease the inventory
 
-    // it's here thank you for finding it
+    // method to increase and decrease the inventory
     public void increaseInventory(){
         this.inventory++;
     }
 
-     //if  statement is written regarding to check the inventory if  is greater than zero
+     //if  statement is written to check the inventory if  is greater than zero
     public void decreaseInventory(){
         if(this.inventory>0) {
             this.inventory--;
             if (this.inventory == 0) {
                 this.isAvailable = false;
-
             }
         }
     }

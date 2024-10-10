@@ -1,79 +1,88 @@
 package LMS;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Librarian {
 
     public static void main(String[] args) {
+        // Creating Book Objects
+        Book book1 = new Book("978-3-16-148410-0", "The Art of Computer Programming", "Donald Knuth", "Addison-Wesley", 1968);
+        Book book2 = new Book("978-0-201-03801-8", "Design Patterns: Elements of Reusable Object-Oriented Software", "Erich Gamma", "Addison-Wesley", 1994);
+        Book book3 = new Book("978-0-262-03384-8", "Introduction to Algorithms", "Thomas H. Cormen", "MIT Press", 2009);
+        Book book4 = new Book("978-0-13-110362-7", "The C Programming Language", "Brian W. Kernighan", "Prentice Hall", 1978);
 
-        Book book1 = new Book("1234-1", "FirstBook", "FirstBookAuthor", "Bob", 2000);
-        Book book2 = new Book("1234-2", "SecondBook", "SecondBookAuthor", "Tony", 2001);
-        Book book3 = new Book("1234-3", "ThirdBook", "ThirdBookAuthor", "Morphy", 2002);
-        Book book4 = new Book("1234-4", "FourthBook", "FourthBookAuthor", "John", 2003);
-
-
-        System.out.println(book1.toString());
-
-        // the below methods from Library class called - Salma
+        // Initializing Library
         Library library = new Library();
 
+        // Inserting Books
         library.insertBook(book1);
         library.insertBook(book2);
         library.insertBook(book3);
         library.insertBook(book4);
+
+        // Displaying All Books
+        System.out.println("Displaying all books:");
         library.displayAllBooks();
 
-        Book foundBook = library.searchBookByISBN("1234-4");
+        // Searching for a Book by ISBN
+        Book foundBook = library.searchBookByISBN("978-0-262-03384-8");
         if (foundBook != null) {
-            System.out.println("This Book is in the collection: " + foundBook.toString());
+            System.out.println("Found Book: " + foundBook.toString());
         } else {
-            System.out.println("There is no book in the collection with this ISBN.");
+            System.out.println("Book not found by ISBN.");
         }
-        library.deleteBookByISBN("1234-2");
+
+        // Deleting a Book by ISBN
+        library.deleteBookByISBN("978-0-201-03801-8");
+        System.out.println("After deletion:");
         library.displayAllBooks();
 
-
-        Book foundBookByIsbnAndAuthor = library.searchBookByISBNAndAuthor("1734-5", "something");
+        // Searching for a Book by ISBN and Author
+        Book foundBookByIsbnAndAuthor = library.searchBookByISBNAndAuthor("978-3-16-148410-0", "Donald Knuth");
         if (foundBookByIsbnAndAuthor != null) {
-            System.out.println("This Book is in the collection: " + foundBookByIsbnAndAuthor.toString());
+            System.out.println("Found Book by ISBN and Author: " + foundBookByIsbnAndAuthor.toString());
         } else {
-            System.out.println("There is no book in the collection with this ISBN and Author.");
+            System.out.println("Book not found by ISBN and Author.");
         }
 
-        // ***********  ***********  ***********  ***********  ***********  ***********  ***********  ***********
+        // Creating Member Objects
+        Member member1 = new Member(1, "Alice Johnson", "alice.johnson@example.com", "555-1234");
+        Member member2 = new Member(2, "Bob Smith", "bob.smith@example.com", "555-5678");
+        Member member3 = new Member(3, "Charlie Brown", "charlie.brown@example.com", "555-9101");
 
-        Member member1 = new Member(1111, "Bob", "b.bob@gmail.com", "777-777-7777");
-        Member member2 = new Member(1112, "Tony", "tony@gmail.com", "777-777-8888");
-        Member member3 = new Member(1113, "John", "john@gmail.com", "777-777-9999");
 
-
-//
-
-        try {
+            // Adding Members
             library.addMember(member1);
             library.addMember(member2);
             library.addMember(member3);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
+
+        // Displaying All Members
+        System.out.println("Displaying all members:");
         library.displayAllMember();
-        library.removeMember(1113);
 
-        Member foundMember = library.searchMemberByID(1456);
+        // Removing a Member
+        library.removeMember(3);
+        System.out.println("After removing a member:");
+        library.displayAllMember();
+
+        // Searching for a Member by ID
+        Member foundMember = library.searchMemberByID(1);
         if (foundMember != null) {
-            System.out.println("This member is registered: " + foundMember.toString());
+            System.out.println("Found Member: " + foundMember.toString());
         } else {
-            System.out.println("There is no a member in the collection with this ID.");
+            System.out.println("Member not found by ID.");
         }
 
-
+        // Borrowing and Returning a Book
+        List<Transactions> transactions = new ArrayList<>();
         member1.borrowBook(book1);
         member1.returnBook(book1);
 
-
-
- /*       System.out.println( "This is to only check the search method: " + library.searchMemberByID(1113));
-
-        library.displayAllMember();*/
+        // Displaying Borrowed Books of a Member
+        System.out.println("Displaying borrowed books for " + member1.getName() + ":");
+        member1.displayBorrowedBooks();
     }
-
 }

@@ -1,119 +1,44 @@
 package LMS;
-
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Transactions {
-    private int transactionId;
+    private static int transactionCounter = 0;
+    private final int transactionId;
     private final String bookISBN;
     private final int memberId;
-    private LocalDateTime issueDate;
-    private LocalDateTime returnDate;
+    private static LocalDate issueDate;
+    private static LocalDate returnDate;
+    ArrayList<Transactions> transactionsList;
 
-
-    public Transactions( String bookISBN, int memberId) {
-        this.transactionId ++;
+    public Transactions(String bookISBN, int memberId) {
+        this.transactionId = ++transactionCounter;
         this.bookISBN = bookISBN;
         this.memberId = memberId;
-        this.issueDate = LocalDateTime.now();
-    }
-
-    public Transactions (int Id,String bookISBN){
-        this.transactionId ++;
-        this.bookISBN = bookISBN;
-        this.memberId = Id;
-        this.returnDate = LocalDateTime.now();
+        setIssueDate(LocalDate.now());
+        transactionsList = new ArrayList<>();
     }
 
 
+    private void setIssueDate(LocalDate issueDate) {Transactions.issueDate = issueDate;}
+    private void setReturnDate(LocalDate returnDate) {Transactions.returnDate = returnDate;}
 
 
+    public int getTransactionId() {return transactionId;}
+    public String getBookISBN() {return bookISBN;}
+    public int getMemberId() {return memberId;}
+    public LocalDate getIssueDate() {return issueDate;}
+    public LocalDate getReturnDate() {return returnDate;}
+    public ArrayList<Transactions> getTransactionsList() {return transactionsList;}
+
+    // Method To use while returning the books
+    public void markAsReturned() {
+        setReturnDate(LocalDate.now());
+    }
 
     @Override
     public String toString() {
         return "TransactionID: " + transactionId + ", Book ISBN: " + bookISBN +
                 ", MemberID: " + memberId + ", Issue Date: " + issueDate + ", Return Date: " + returnDate;
     }
-
-
 }
-
-
-//redundant codes:just its commented
-
-
-
-//public class Transactions {
-//    private int transactionId;
-//    private String bookISBN;
-//    private int memberId;
-//    private String issueDate;
-//    private String returnDate;
-
-//    public Transactions(int transactionId, String bookISBN, int memberId, String issueDate, String returnDate) {
-//        this.transactionId = transactionId;
-//        this.bookISBN = bookISBN;
-//        this.memberId = memberId;
-//        this.issueDate = issueDate;
-//        this.returnDate = returnDate;
-//    }
-
-//    private void setTransactionId(int transactionId) { this.transactionId = transactionId;}
-//    private void setBookISBN(String bookISBN) { this.bookISBN = bookISBN;}
-//    private void setMemberId(int memberId) { this.memberId = memberId;}
-//    private void setIssueDate(String issueDate) { this.issueDate = issueDate; }
-//    private void setReturnDate(String returnDate) { this.returnDate = returnDate; }
-
-
-//    public int getTransactionId() { return transactionId; }
-//    public String getBookISBN() { return bookISBN;}
-//    public int getMemberId() { return memberId; }
-//    public String getIssueDate() { return issueDate; }
-//    public String getReturnDate() { return returnDate;}
-
-//    @Override
-//    public String toString() {
-//        return "Transactions{" +
-//                "transactionId=" + transactionId +
-//                ", bookISBN='" + bookISBN + '\'' +
-//                ", memberId=" + memberId +
-//                ", issueDate='" + issueDate + '\'' +
-//                ", returnDate='" + returnDate + '\'' +
-//                '}';
-//    }
-
-//
-//    public class Transactions {
-//        private final int transactionId;
-//        private final String bookISBN;
-//        private final int memberId;
-//        private final  String  issueDate;
-//        private  String  returnDate;
-//
-//        public Transactions(int transactionId, String bookISBN, int memberId, String issueDate) {
-//            this.transactionId = transactionId;
-//            this.bookISBN = bookISBN;
-//            this.memberId = memberId;
-//            this.issueDate = issueDate;
-//        }
-//
-//        public void completeTransaction(String returnDate) {
-//            this.returnDate = returnDate;
-//        }
-//
-//        // Getters and Setters
-////        public int getTransactionId() { return transactionId; }
-////        public String getBookISBN() { return bookISBN; }
-////        public int getMemberId() { return memberId; }
-////        public String getIssueDate() { return issueDate; }
-////        public String getReturnDate() { return returnDate; }
-//
-//        @Override
-//        public String toString() {
-//            return "TransactionID: " + transactionId + ", Book ISBN: " + bookISBN +
-//                    ", MemberID: " + memberId + ", Issue Date: " + issueDate +
-//                    ", Return Date: " + (returnDate != null ? returnDate : "Not Returned");
-//        }
-//    }
-
-

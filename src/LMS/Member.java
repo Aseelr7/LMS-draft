@@ -9,7 +9,7 @@ public class Member {
    private   String email;
    private   String phoneNumber;
    private ArrayList<Book> borrowedBooks;
-   private Transactions transaction;
+   private  Transactions transaction;
 
     public Member(int memberId, String name, String email, String phoneNumber) {
         this.memberId = memberId;
@@ -47,30 +47,32 @@ public class Member {
         return borrowedBooks;
     }
 
-    // method to add a book to members borrowed books list
 
+    // method to borrow a book and add the book to members borrowed books list which also decreases the amount of that book from the inventory
     public void borrowBook(Book book){
-        if(borrowedBooks.contains(book)){
+        if(getBorrowedBooks().contains(book)){
             System.out.println("Member Already borrowed a copy of this book, return that first");
         } else if(book.getIsAvailable()) {
-            borrowedBooks.add(book);
+            getBorrowedBooks().add(book);
             book.decreaseInventory();
             transaction = new Transactions(book.getISBN(),getMemberId());
+            transaction.getTransactionsList().add(transaction);
             System.out.println(book.getTitle() + " by: " + book.getAuthor() + " successfully borrowed");
             System.out.println("**************************************");
             System.out.println("Transaction Details: " + '\n' + transaction.toString());
         } else System.out.println("Book is currently not Available in the Library");
     }
 
-    // method to remove a book from members borrowed books list
 
+    //Method to return a borrowed book which also removes the book from members borrowed books list and adds it back to the inventory
     public void returnBook(Book book){
-        if(borrowedBooks.contains(book)){
-        borrowedBooks.remove(book);
+        if(getBorrowedBooks().contains(book)){
+        getBorrowedBooks().remove(book);
         book.increaseInventory();
-        transaction = new Transactions(getMemberId(), book.getISBN());
-            System.out.println(book.getTitle() + " by: " + book.getAuthor() + " successfully returned");
-
+            transaction = new Transactions(book.getISBN(),getMemberId());
+            transaction.transactionsList.add(transaction);
+            transaction.markAsReturned();
+            System.out.println(book.getTitle() + " by: " + book.getAuthor() + " successfully returned \n");
             System.out.println("**************************************");
             System.out.println("Transaction Details: " + '\n' + transaction.toString());
 
