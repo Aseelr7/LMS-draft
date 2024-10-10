@@ -58,10 +58,17 @@ public class Librarian {
         library.displayAllMember();
         library.removeMember(1113);
 
+        Member foundMember = library.searchMemberByID(1456);
+        if (foundMember != null) {
+            System.out.println("This member is registered: " + foundMember.toString());
+        } else {
+            System.out.println("There is no a member in the collection with this ID.");
+        }
 
 
         member1.borrowBook(book1);
         member1.returnBook(book1);
+
 
 
  /*       System.out.println( "This is to only check the search method: " + library.searchMemberByID(1113));
