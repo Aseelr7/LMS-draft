@@ -1,9 +1,5 @@
 package LMS;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Librarian {
 
     public static void main(String[] args) {
@@ -48,9 +44,9 @@ public class Librarian {
         }
 
         // Creating Member Objects
-        Member member1 = new Member(1, "Alice Johnson", "alice.johnson@example.com", "555-1234");
-        Member member2 = new Member(2, "Bob Smith", "bob.smith@example.com", "555-5678");
-        Member member3 = new Member(3, "Charlie Brown", "charlie.brown@example.com", "555-9101");
+        Member member1 = new Member(1, "Tony Morphy", "tony.morphy@gmail.com", "555-1234");
+        Member member2 = new Member(2, "Mark Zuckerberg", "mark.zuck@meta.com", "555-5678");
+        Member member3 = new Member(3, "Jeff Bezos", "jeff.bezos@amazon.com", "555-9101");
 
 
             // Adding Members
@@ -77,7 +73,6 @@ public class Librarian {
         }
 
         // Borrowing and Returning a Book
-        List<Transactions> transactions = new ArrayList<>();
         member1.borrowBook(book1);
         member1.returnBook(book1);
 

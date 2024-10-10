@@ -29,8 +29,7 @@ public class Library {
 
     /*
 
-    public void addMember(int memberID, String name, String email, String phoneNumber) throws IOException {
-        membersList.add(new Member(memberID, name, email, phoneNumber));
+
 
 /*  Note for Aseel:
  I made some small changes to the method. By creating an instance of Member class, we can directly add the
